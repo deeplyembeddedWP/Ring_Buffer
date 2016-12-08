@@ -22,8 +22,8 @@ typedef struct{
 }Q_BufferT, *Q_BufferP;
 
 /* Extern Functions */
-extern signed char Put_Sample(unsigned char rf_sample);
-extern signed char Fetch_Sample(unsigned char *rf_sample);
+extern signed char Put_Sample(unsigned char sample);
+extern signed char Fetch_Sample(unsigned char *sample);
 extern void InitializeQueue();
 
 
