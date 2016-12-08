@@ -20,13 +20,13 @@ void InitializeQueue()
 }
 
 /* Function to feed samples into the buffer */
-signed char Put_Sample(unsigned char rf_sample)
+signed char Put_Sample(unsigned char sample)
 {
 	/*  Puts an entry at the end of the queue, if not full. Returns 0 if successful, -1 if failed */
 	if (!My_buffer.full)
 	{
 		My_buffer.empty = FALSE;
-		My_buffer.buffer[My_buffer.rear] = rf_sample;
+		My_buffer.buffer[My_buffer.rear] = sample;
 		My_buffer.rear = (My_buffer.rear + 1) % BUFFER_SIZE;
 		if (My_buffer.rear == My_buffer.front)
 			My_buffer.full = TRUE;
@@ -37,7 +37,7 @@ signed char Put_Sample(unsigned char rf_sample)
 }
 
 /* Function to read samples from the buffer */
-signed char Fetch_Sample(unsigned char *rf_sample)
+signed char Fetch_Sample(unsigned char *sample)
 {
 	signed char ret;
 
@@ -46,7 +46,7 @@ signed char Fetch_Sample(unsigned char *rf_sample)
 	{
 		ret = 0;
 		My_buffer.full = FALSE;
-		*rf_sample = My_buffer.buffer[My_buffer.front];
+		*sample = My_buffer.buffer[My_buffer.front];
 		My_buffer.front = (My_buffer.front + 1) % BUFFER_SIZE;
 
 		if (My_buffer.front == My_buffer.rear)
